@@ -15,6 +15,7 @@ this.name = name;
 this.imgURL = imgURL;
 this.clickCtr = 0;
 this.shownCtr = 0;
+this.shownCtr2 = 0;
 
 }
 
@@ -65,8 +66,9 @@ addEventListener("click", function() {
 
 
 for(var i = 0; i < products.length; i++){
-    if(workingImages.length > 17){
+    if(workingImages.length >= 18){
         products[i].shownCtr = 0;
+        
     }
 }
     
@@ -95,11 +97,12 @@ console.log(overAllCount, 'Over all');
 var img1 = document.getElementById('left-image-img');
 var productimg1 = products[Math.floor(Math.random() * products.length)];
 
-while(productimg1.shownCtr){
+while(productimg1.shownCtr != 0){
     productimg1 = products[Math.floor(Math.random() * products.length)];
     
 }
 productimg1.shownCtr++;
+productimg1.shownCtr2++;
 workingImages.push(productimg1);
 
 img1.setAttribute('src',productimg1.imgURL);
@@ -114,11 +117,12 @@ name1.textContent = productimg1.name;
 var img2 = document.getElementById('middle-image-img');
 var productImg2 = products[Math.floor(Math.random() * products.length)];
 
-while(productImg2.shownCtr && workingImages.length < 17){
+while(productImg2.shownCtr != 0){
     productImg2 = products[Math.floor(Math.random() * products.length)];
     
 }
 productImg2.shownCtr++;
+productImg2.shownCtr2++;
 workingImages.push(productImg2);
 
 img2.setAttribute('src',productImg2.imgURL);
@@ -134,12 +138,13 @@ var img3 = document.getElementById('right-image-img');
 
 var productImg3 = products[Math.floor(Math.random() * products.length)];
 
-while(productImg3.shownCtr && workingImages.length < 17){
+while(productImg3.shownCtr != 0){
 productImg3 = products[Math.floor(Math.random() * products.length)];
 
 }
 img3.setAttribute('src',productImg3.imgURL);
 productImg3.shownCtr++;
+productImg3.shownCtr2++;
 workingImages.push(productImg3);
 var name3 = document.getElementById('right-image');
 name3.textContent= productImg3.name;
@@ -174,7 +179,15 @@ var chart = new Chart(ctx, {
             label: 'Your Favorite Products',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [overAllCount, products[0].clickCtr, products[1].clickCtr, products[2].clickCtr, products[3].clickCtr, products[4].clickCtr, products[5].clickCtr, products[6].clickCtr,products[7].clickCtr,products[8].clickCtr,products[9].clickCtr, products[10].clickCtr, products[11].clickCtr, products[12].clickCtr, products[13].clickCtr, products[14].clickCtr, products[15].clickCtr, products[16].clickCtr, products[17].clickCtr, products[18].clickCtr,   ]
+            data: [overAllCount, products[0].clickCtr, products[1].clickCtr, products[2].clickCtr, products[3].clickCtr, products[4].clickCtr, products[5].clickCtr, products[6].clickCtr,products[7].clickCtr,products[8].clickCtr,products[9].clickCtr, products[10].clickCtr, products[11].clickCtr, products[12].clickCtr, products[13].clickCtr, products[14].clickCtr, products[15].clickCtr, products[16].clickCtr, products[17].clickCtr, products[18].clickCtr,   ] },
+            {
+                label: "Total Times Shown",
+                data:
+           
+                [, products[0].shownCtr2, products[1].shownCtr2, products[2].shownCtr2, products[3].shownCtr2, products[4].shownCtr2, products[5].shownCtr2, products[6].shownCtr2,products[7].shownCtr2,products[8].shownCtr2,products[9].shownCtr2, products[10].shownCtr2, products[11].shownCtr2, products[12].shownCtr2, products[13].shownCtr2, products[14].shownCtr2, products[15].shownCtr2, products[16].shown, products[17].shownCtr2, products[18].shownCtr2,   ],
+            type: 'bar'
+            
+
            
         }]
     },
